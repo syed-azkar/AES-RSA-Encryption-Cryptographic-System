@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AES Cryptographic System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🔐 AES Cryptographic System</h1>
+
+        <p class="subtitle">
+            Advanced Encryption Standard - AES-128
+        </p>
+
+        <form method="POST">
+
+            <label for="key">
+                Secret Key
+            </label>
+
+            <input
+                type="text"
+                id="key"
+                name="key"
+                maxlength="16"
+                placeholder="Enter 16-character key"
+                required
+            >
+
+            <label for="message">
+                Message / Ciphertext
+            </label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Enter your message here..."
+                required
+            ></textarea>
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    name="operation"
+                    value="encrypt">
+                    🔒 Encrypt
+                </button>
+
+                <button
+                    type="submit"
+                    name="operation"
+                    value="decrypt">
+                    🔓 Decrypt
+                </button>
+
+            </div>
+
+        </form>
+
+
+        {% if result %}
+
+        <div class="result">
+
+            <h2>
+                {% if operation == "encrypt" %}
+                    🔒 Encrypted Result
+                {% else %}
+                    🔓 Decrypted Result
+                {% endif %}
+            </h2>
+
+            <textarea
+                rows="5"
+                readonly>{{ result }}</textarea>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <div class="info">
+
+            <h3>How it works</h3>
+
+            <p>
+                <strong>Encryption:</strong>
+                Plaintext + Secret Key → Ciphertext
+            </p>
+
+            <p>
+                <strong>Decryption:</strong>
+                Ciphertext + Secret Key → Plaintext
+            </p>
+
+            <p>
+                AES-128 uses a 128-bit (16-character)
+                secret key.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

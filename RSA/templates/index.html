@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RSA Cryptographic System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🔐 RSA Cryptographic System</h1>
+
+        <p class="subtitle">
+            Rivest-Shamir-Adleman Public Key Cryptography
+        </p>
+
+        <div class="key-info">
+            <strong>RSA Key Size:</strong> 2048 bits
+            <br>
+            <strong>Encryption:</strong> Public Key
+            <br>
+            <strong>Decryption:</strong> Private Key
+        </div>
+
+        <form method="POST">
+
+            <label for="message">
+                Message / Encrypted Text
+            </label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="8"
+                placeholder="Enter your message here..."
+                required
+            ></textarea>
+
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    name="operation"
+                    value="encrypt">
+                    🔒 Encrypt
+                </button>
+
+                <button
+                    type="submit"
+                    name="operation"
+                    value="decrypt">
+                    🔓 Decrypt
+                </button>
+
+            </div>
+
+        </form>
+
+
+        {% if result %}
+
+        <div class="result">
+
+            <h2>
+                {% if operation == "encrypt" %}
+                    🔒 Encrypted Result
+                {% else %}
+                    🔓 Decrypted Result
+                {% endif %}
+            </h2>
+
+            <textarea
+                rows="8"
+                readonly>{{ result }}</textarea>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <div class="info">
+
+            <h3>How RSA Works</h3>
+
+            <p>
+                <strong>Encryption:</strong>
+                Plaintext + Public Key → Ciphertext
+            </p>
+
+            <p>
+                <strong>Decryption:</strong>
+                Ciphertext + Private Key → Plaintext
+            </p>
+
+            <p>
+                RSA is an asymmetric cryptographic algorithm,
+                meaning different keys are used for encryption
+                and decryption.
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
